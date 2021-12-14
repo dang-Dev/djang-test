@@ -7,3 +7,9 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('', RedirectView.as_view(url='catalog/', permanent=True)),
 ]
+
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('books/', views.BookListView.as_view(), name='books'),
+    path('book/<int:pk>', views.BookDetailView.as_view(), name='book-detail'),
+]
