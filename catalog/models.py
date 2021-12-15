@@ -19,7 +19,12 @@ class Genre(models.Model):
     def get_absolute_url(self):
         return reverse("genre-detail", kwargs={"pk": self.pk})
 
+class Language(models.Model):
+    name = models.CharField(_("Language"), max_length=200, help_text='Enter a Language(e.g. Tagalog )')
 
+    def __str__(self):
+        return self.name
+    
 class Book(models.Model):
 
     title = models.CharField(max_length=200)
@@ -32,7 +37,7 @@ class Book(models.Model):
 
     
     genre = models.ManyToManyField(Genre, help_text='Select a genre for this book')
-
+    language =  models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
     def __str__(self):
         
         return self.title
